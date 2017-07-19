@@ -10,3 +10,28 @@
   font-weight: normal;
   color: gray;
 }
+
+.form-signin {
+  max-width: 30%;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  margin-top: 20px;
+  background-color: #ececec;
+  border: 1px solid #9EC03B;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.from-signin h2 {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
