@@ -7,8 +7,24 @@
 
 module.exports = {
 
+  // This loads the sign-up page --> new.ejs
   'new': function (req, res) {
     res.view();
+  },
+
+  create: function (req, res, next) {
+
+    // Create a User with the params sent form
+    // the sign-up form --> new.ejs
+    User.create(req.params.all(), function userCreated (err, user){
+
+      // if there's an error
+      if(err) return next(err);
+
+      //After successfylly creating the user
+      //redirect to the show action
+      res.json(user);
+    })
   }
 };
 
