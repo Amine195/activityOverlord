@@ -9,10 +9,8 @@ module.exports = {
 
   // This loads the sign-up page --> new.ejs
   'new': function (req, res) {
-    // flash messages
-    res.locals.flash = _.clone(req.session.flash);
+    // flash dernah fel policies
     res.view();
-    req.session.flash = {};
   },
 
   create: function (req, res, next) {
