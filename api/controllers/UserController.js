@@ -9,7 +9,10 @@ module.exports = {
 
   // This loads the sign-up page --> new.ejs
   'new': function (req, res) {
+    // flash messages
+    res.locals.flash = _.clone(req.session.flash);
     res.view();
+    req.session.flash = {};
   },
 
   create: function (req, res, next) {
@@ -19,12 +22,24 @@ module.exports = {
     User.create(req.params.all(), function userCreated (err, user){
 
       // if there's an error
-      if(err) return next(err);
+      // if(err) return next(err); on la changer
+      if (err) {
+        console.log(err);
 
-      //After successfylly creating the user
+        // flash messages
+        req.session.flash = {
+          err: err.ValidationError
+        };
+
+        // if error redirect back to sign-up page
+        return res.redirect('/user/new');
+      }
+
+      //After successfuly creating the user
       //redirect to the show action
       res.json(user);
-    })
+      req.session.flash = {};
+    });
   }
 };
 
