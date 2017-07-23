@@ -35,8 +35,20 @@ module.exports = {
 
       //After successfuly creating the user
       //redirect to the show action
-      res.json(user);
-      req.session.flash = {};
+      // from ep1-6 // res.json(user);
+
+      res.redirect('user/show/'+user.id);
+    });
+  },
+
+  // render the profile view (e.g. /views/show.ejs)
+  show: function (req, res, next) {
+    User.findOne(req.param('id'), function foundUser (err, user) {
+      if(err) return next(err);
+      if(!user) return next();
+      res.view({
+        user:user
+      });
     });
   }
 };
